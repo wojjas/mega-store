@@ -3,9 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "react-scripts": "0.7.0"
-  },
-  "dependencies": {
+    "react-scripts": "0.7.0",
     "foreman": "^2.0.0"
   },
   "scripts": {

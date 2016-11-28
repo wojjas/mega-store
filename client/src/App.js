@@ -1,31 +1,40 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 //import logo from './logo.svg'; <img src={logo} className="App-logo" alt="logo" />
 import FilterableProductTable from './components/FilterableProductTable';
 import './App.css';
 
-const PRODUCTS = [
-  {id: Symbol().toString(), category: "Sporting Goods", price: "$49.99", stocked: true, name: "Football"},
-  {id: Symbol().toString(), category: "Sporting Goods", price: "$9.99", stocked: true, name: "Baseball"},
-  {id: Symbol().toString(), category: "Sporting Goods", price: "$29.99", stocked: false, name: "Basketball"},
-  {id: Symbol().toString(), category: "Electronics", price: "$99.99", stocked: true, name: "iPod Touch"},
-  {id: Symbol().toString(), category: "Electronics", price: "$399.99", stocked: false, name: "iPhone 5"},
-  {id: Symbol().toString(), category: "Electronics", price: "$199.99", stocked: true, name: "Nexus 7"}
-];
-
+// NB! the port, this works because of
+// "proxy": "http://localhost:3001/" in package.json
+// webpack does the trick, proxies into where api-server runs.
+const API_URL = 'http://localhost:3000';
 
 class App extends Component {
-  componentWillMout(){
-    //TODO: Fetch the components from API here
-    //var url = "http://www.omdbapi.com" //has CORS enabled
-  }
+    constructor(props) {
+        super(props);
 
-  render() {
-    return (
-      <div className="App">
-        <FilterableProductTable products={PRODUCTS}/>
-      </div>
-    );
-  }
+        this.state = {articles: []};
+    }
+
+    componentDidMount() {
+        fetch(API_URL + '/api/data')
+            .then(function (res) {
+                return res ? res.json() : null;
+            })
+            .then(dataFromServer => {
+                this.setState({articles: dataFromServer});
+            })
+            .catch(error => {
+                console.log('Exception: ', error);
+        });
+    }
+
+    render() {
+        return (
+            <div className="App">
+                <FilterableProductTable products={this.state.articles}/>
+            </div>
+        );
+    }
 }
 
 export default App;

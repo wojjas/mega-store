@@ -6,6 +6,19 @@ You can find the most recent version of this guide [here](https://github.com/fac
 ## Purpose
 Play-ground-project for testing out some ReactJS, GraphQL in Node and Relay on Client
 
+## Install
+```npm install```
+```server/npm install```
+```client/npm install```
+
 ## Implemented so far
+
+### Client
 ReactJS following and monkeying https://facebook.github.io/react/docs/thinking-in-react.html
 
+### Server
+Node, Express returning an array of data
+
+### Client-Server
+This setup is running both in the same project, using webpack and foreman to serve them both.
+Each directory, the root, the client and the server, have their own package.json

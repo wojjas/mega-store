@@ -9,3 +9,16 @@ Play-ground-project for testing out some ReactJS, GraphQL in Node and Relay on C
 ## Implemented so far
 ReactJS following and monkeying https://facebook.github.io/react/docs/thinking-in-react.html
 
+## Component Structure
+
+<pre>
+App     State: articles[]
+    FilterableProductTable      State: filterText, inStockOnly
+        SearchBar
+        ProductTable
+            ProductCategoryRow
+            ProductRow
+</pre>
+
+           
+            
